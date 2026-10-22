@@ -9,8 +9,9 @@ import {
 // @ts-expect-error CSS is loaded by the bundler; it has no TypeScript declarations.
 import "./index.css";
 
+
 const API = (
-  import.meta.env.VITE_API_URL || "http://127.0.0.1:8000"
+  (import.meta as ImportMeta & { env: { VITE_API_URL?: string } }).env.VITE_API_URL || "http://127.0.0.1:8000"
 ).replace(/\/$/, "") + "/api";
 
 type Analysis = {
